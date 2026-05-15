@@ -1,0 +1,269 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鲍逸轩 - 个人简历</title>
+    <!-- 引入艺术字体：ZCOOL KuaiLe -->
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+        header { text-align: center; margin-bottom: 3rem; }
+        .avatar { width: 120px; height: 120px; border-radius: 50%; background: #3498db; color: white; display: flex; align-items: center; justify-content: center; font-size: 3rem; margin: 0 auto 1.5rem; font-weight: bold; }
+        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #2c3e50; }
+        .tagline { font-size: 1.2rem; color: #7f8c8d; margin-bottom: 1.5rem; }
+        .contact-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; color: #3498db; font-size: 0.95rem; }
+        .contact-info span { display: flex; align-items: center; gap: 0.3rem; }
+        section { background: white; border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s ease; }
+        section:hover { transform: translateY(-2px); }
+        h2 { font-size: 1.8rem; margin-bottom: 1.2rem; padding-bottom: 0.5rem; border-bottom: 2px solid rgba(255,255,255,0.3); }
+
+        /* ========== 轮播通用样式 ========== */
+        .carousel { overflow: hidden; }
+        .track { display: flex; width: max-content; }
+        .track:hover { animation-play-state: paused; }
+        .set { display: flex; gap: 0.7rem; flex-shrink: 0; }
+
+        /* ========== 技能版块：草绿色背景 ========== */
+        #skills-section {
+            background: #7CB342;  /* 草绿色 */
+            color: #fff;
+        }
+        #skills-section h2 {
+            color: #fff;
+            border-bottom-color: rgba(255,255,255,0.4);
+        }
+        .skill-tag {
+            font-family: 'ZCOOL KuaiLe', cursive;
+            background: rgba(255,255,255,0.25);
+            color: #fff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            white-space: nowrap;
+            border: 1px solid rgba(255,255,255,0.4);
+            letter-spacing: 1px;
+        }
+        .skills-track {
+            animation: scroll 35s linear infinite;
+        }
+
+        /* ========== 项目版块：莫奈紫背景 ========== */
+        #projects-section {
+            background: #9C89B8;  /* 莫奈紫 */
+            color: #fff;
+        }
+        #projects-section h2 {
+            color: #fff;
+            border-bottom-color: rgba(255,255,255,0.4);
+        }
+        .project-card {
+            min-width: 280px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(4px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+        .project-title {
+            font-family: 'ZCOOL KuaiLe', cursive;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.4rem;
+            color: #fff;
+        }
+        .project-meta {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.8rem;
+        }
+        .project-desc {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .projects-track {
+            animation: scroll 40s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ========== 其他版块保持原样 ========== */
+        .job, .project { margin-bottom: 1.5rem; }
+        .job:last-child, .project:last-child { margin-bottom: 0; }
+        .job-title { font-weight: 600; font-size: 1.1rem; }
+        .job-meta { font-size: 0.9rem; color: #7f8c8d; margin-bottom: 0.5rem; }
+        ul { padding-left: 1.2rem; }
+        li { margin-bottom: 0.3rem; }
+
+        form { display: flex; flex-direction: column; gap: 1rem; max-width: 500px; margin-top: 1rem; }
+        input, textarea { padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
+        button { background: #3498db; color: white; border: none; padding: 0.8rem; border-radius: 8px; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: #2980b9; }
+
+        @media (max-width: 600px) {
+            .container { padding: 1.5rem 1rem; }
+            h1 { font-size: 2rem; }
+            .project-card { min-width: 240px; }
+        }
+
+        .fade-in { animation: fadeIn 0.6s ease forwards; opacity: 0; }
+        @keyframes fadeIn { to { opacity: 1; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="avatar">鲍</div>
+            <h1>鲍逸轩</h1>
+            <p class="tagline">安徽省铜陵人，达摩院认证AI训练师 / 校园创业者 / 燕山大学建环大一 · 终身学习者</p >
+            <div class="contact-info">
+                <span>📧 2840292785@qq.com</span>
+                <span>📱 微信：byx13705620803</span>
+                <span>📍 燕山大学</span>
+            </div>
+        </header>
+
+        <section class="fade-in">
+            <h2>关于我</h2>
+            <p>我是燕山大学建筑环境与能源应用工程专业的大一学生，持有达摩院人工智能训练师初级+高级认证。我热衷于将AI技术与实际场景结合，通过自媒体（抖音、小红书）和校园经济实践赚到了大学第一桶金。我善于学习、乐于折腾，正在探索“建环+AI+储能”的交叉领域，目标是成为复合型技术人才，未来争取推免至重庆大学储能科学与工程专业。</p >
+        </section>
+
+        <section class="fade-in">
+            <h2>工作经历</h2>
+            <div class="job">
+                <div class="job-title">校园创业项目 · 创始人</div>
+                <div class="job-meta">2025.12 - 至今</div>
+                <ul>
+                    <li>运营抖音/小红书账号（燕大相关内容），提供AI头像定制、文案生成等服务，实现月均收入覆盖生活费</li>
+                    <li>组建校园团队，开展校园卡、驾照、球衣定制、电脑配置等业务，已服务校内同学100+人</li>
+                </ul>
+            </div>
+            <div class="job">
+                <div class="job-title">AI绘画定制服务 · 独立设计师</div>
+                <div class="job-meta">2025.10 - 至今</div>
+                <ul>
+                    <li>利用Nano Banana、Midjourney等工具为客户生成定制头像/壁纸，累计完成80+订单，客户满意度100%</li>
+                    <li>最高单日收入200元</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 技能版块：草绿色背景 + 轮播 -->
+        <section class="fade-in" id="skills-section">
+            <h2>技能</h2>
+            <div class="carousel">
+                <div class="track skills-track">
+                    <!-- 第一套技能标签 -->
+                    <div class="set">
+                        <span class="skill-tag">DeepSeek</span>
+                        <span class="skill-tag">豆包</span>
+                        <span class="skill-tag">Midjourney</span>
+                        <span class="skill-tag">Nano Banana</span>
+                        <span class="skill-tag">ChatGPT</span>
+                        <span class="skill-tag">Gemini</span>
+                        <span class="skill-tag">剪映</span>
+                        <span class="skill-tag">Canva</span>
+                        <span class="skill-tag">达摩院AI训练师认证</span>
+                        <span class="skill-tag">CET-4（备考六级）</span>
+                        <span class="skill-tag">自媒体运营</span>
+                        <span class="skill-tag">校园市场拓展</span>
+                        <span class="skill-tag">团队管理</span>
+                        <span class="skill-tag">基础Python</span>
+                    </div>
+                    <!-- 第二套完全相同的标签（用于无缝循环） -->
+                    <div class="set">
+                        <span class="skill-tag">DeepSeek</span>
+                        <span class="skill-tag">豆包</span>
+                        <span class="skill-tag">Midjourney</span>
+                        <span class="skill-tag">Nano Banana</span>
+                        <span class="skill-tag">ChatGPT</span>
+                        <span class="skill-tag">Gemini</span>
+                        <span class="skill-tag">剪映</span>
+                        <span class="skill-tag">Canva</span>
+                        <span class="skill-tag">达摩院AI训练师认证</span>
+                        <span class="skill-tag">CET-4（备考六级）</span>
+                        <span class="skill-tag">自媒体运营</span>
+                        <span class="skill-tag">校园市场拓展</span>
+                        <span class="skill-tag">团队管理</span>
+                        <span class="skill-tag">基础Python</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 项目作品版块：莫奈紫背景 + 轮播 -->
+        <section class="fade-in" id="projects-section">
+            <h2>项目作品</h2>
+            <div class="carousel">
+                <div class="track projects-track">
+                    <!-- 第一套项目卡片 -->
+                    <div class="set">
+                        <div class="project-card">
+                            <div class="project-title">燕大新生生存指南系列</div>
+                            <div class="project-meta">抖音/小红书 · 内容创作者</div>
+                            <p class="project-desc">制作并发布关于燕山大学专业选择、宿舍条件、就业前景等干货视频，单条最高播放量10w+，累计获赞2000+，带动精准粉丝增长700+。</p >
+                        </div>
+                        <div class="project-card">
+                            <div class="project-title">AI绘画头像定制</div>
+                            <div class="project-meta">小红书/闲鱼 · 服务项目</div>
+                            <p class="project-desc">采用“AI生成+人工精修”模式，单月最高流水1500元，客户复购率约30%。</p >
+                        </div>
+                    </div>
+                    <!-- 第二套完全相同的卡片 -->
+                    <div class="set">
+                        <div class="project-card">
+                            <div class="project-title">燕大新生生存指南系列</div>
+                            <div class="project-meta">抖音/小红书 · 内容创作者</div>
+                            <p class="project-desc">制作并发布关于燕山大学专业选择、宿舍条件、就业前景等干货视频，单条最高播放量10w+，累计获赞2000+，带动精准粉丝增长700+。</p >
+                        </div>
+                        <div class="project-card">
+                            <div class="project-title">AI绘画头像定制</div>
+                            <div class="project-meta">小红书/闲鱼 · 服务项目</div>
+                            <p class="project-desc">采用“AI生成+人工精修”模式，单月最高流水1500元，客户复购率约30%。</p >
+                        </div>
+                    </div>
+                    <!-- 第二套完全相同的卡片 -->
+                    <div class="set">
+                        <div class="project-card">
+                            <div class="project-title">燕大新生生存指南系列</div>
+                            <div class="project-meta">抖音/小红书 · 内容创作者</div>
+                            <p class="project-desc">制作并发布关于燕山大学专业选择、宿舍条件、就业前景等干货视频，单条最高播放量10w+，累计获赞2000+，带动精准粉丝增长700+。</p >
+                        </div>
+                        <div class="project-card">
+                            <div class="project-title">AI绘画头像定制</div>
+                            <div class="project-meta">小红书/闲鱼 · 服务项目</div>
+                            <p class="project-desc">采用“AI生成+人工精修”模式，单月最高流水1500元，客户复购率约30%。</p >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="fade-in">
+            <h2>联系我</h2>
+            <form action="#" method="post">
+                <input type="text" placeholder="你的名字" required>
+                <input type="email" placeholder="你的邮箱" required>
+                <textarea rows="4" placeholder="留言内容..."></textarea>
+                <button type="submit">发送消息</button>
+            </form>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: #7f8c8d;">
+                📧 2840292785@qq.com ｜ 微信：byx13705620803<br>
+                🎵 抖音：65045535114 ｜ 📕 小红书：byx13705620803
+            </p >
+        </section>
+    </div>
+    <script>
+        document.querySelectorAll('.fade-in').forEach((el, i) => {
+            el.style.animationDelay = i * 0.1 + 's';
+        });
+    </script>
+</body>
+</html>
+```
